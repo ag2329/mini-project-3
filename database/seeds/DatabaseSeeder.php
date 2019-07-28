@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(UsersTableSeeder::class);
+      factory(App\User::class, 50)->create()->each(function ($user) {
+          $user->profile()->save(factory(App\Profile::class)->make());
+      });
+    #  $this->call(UsersTableSeeder::class);
     }
 }
