@@ -6,9 +6,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Questions
-                        <a class="btn btn-primary float-right" href="{{ route('questions.create') }}">
-                            Create a Question
-                        </a>
 
 
                         <a class="btn btn-primary float-right" href="{{ route('showquestions') }}">
@@ -23,26 +20,38 @@
                                         <div class="card mb-3 ">
                                             <div class="card-header">
                                                 <small class="text-muted">
-                                                    Updated: {{ $question->created_at->diffForHumans() }}
-                                                    Answers: {{ $question->answers()->count() }}
+
+
+
 
                                                 </small>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text">{{$question->body}}</p>
+                                                <p class="card-text"> <b>Question: {{$question->body}}</b></p>
                                             </div>
+
+                                            <table class="table table-striped table-bordered">
+                                                @foreach ($question->answers as $answer)
+
+                                                    <tr>
+
+                                                        <th><strong>Answer: {{ $answer->body }}</strong></th>
+
+                                                    </tr>
+
+
+                                                @endforeach
+                                            </table>
                                             <div class="card-footer">
                                                 <p class="card-text">
 
-                                                    <a class="btn btn-primary float-right" href="{{ route('questions.show', ['id' => $question->id]) }}">
-                                                        View
-                                                    </a>
+
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 @empty
-                                        There are no questions to view, you can  create a question.
+                                    There are no questions to view, you can  create a question.
                                 @endforelse
 
 

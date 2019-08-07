@@ -27,13 +27,6 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function showquestion(){
-        $user = Auth::user();
-        $questions = $user->questions()->paginate(6);
-        return view('question_answer')->with('questions', $questions);
-    }
-
     public function create()
     {
 
@@ -71,6 +64,12 @@ class QuestionController extends Controller
 
         // return redirect()->route('questions.show', ['id' => $question->id]);
 
+    }
+
+    public function show_question(){
+        $user = Auth::user();
+        $questions = $user->questions()->paginate(6);
+        return view('home')->with('questions', $questions);
     }
 
 
