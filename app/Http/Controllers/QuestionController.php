@@ -28,7 +28,8 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showquestion(){
+    public function showquestion()
+    {
         $user = Auth::user();
         $questions = $user->questions()->paginate(6);
         return view('question_answer')->with('questions', $questions);
